@@ -1,4 +1,5 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UserService } from './services/user.service';
 
@@ -15,7 +16,9 @@ export class AppComponent implements OnInit, DoCheck {
   public token: string = '';
 
   constructor(
-    private _userService: UserService
+    private _userService: UserService,
+    private _router: Router,
+    private _route: ActivatedRoute
   ) {
     this.loadUser();
   }
@@ -32,6 +35,13 @@ export class AppComponent implements OnInit, DoCheck {
 
   ngDoCheck() {
     this.loadUser();
+  }
+
+  logOut() {
+    localStorage.clear();
+    this.identity = {};
+    this.token = '';
+    this._router.navigate(['/index']);
   }
 
   protected readonly Object = Object;
