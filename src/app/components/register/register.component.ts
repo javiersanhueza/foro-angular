@@ -10,8 +10,11 @@ import { User } from '../../models/user';
 export class RegisterComponent implements OnInit {
   public pageTitle: string;
   public user: User;
+  public isLoadingRegister: boolean
+
   constructor() {
     this.pageTitle = 'Registrate';
+    this.isLoadingRegister = false;
     this.user = new User(
       '',
       '',

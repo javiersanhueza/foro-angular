@@ -27,5 +27,89 @@
         </small>
       </div>
     </div>
+    <div class="form-group mt-3">
+      <label for="surname" class="form-label">Apellidos (*)</label>
+      <input
+        type="text"
+        name="surname"
+        id="surname"
+        class="form-control"
+        #surname="ngModel"
+        [(ngModel)]="user.surname"
+        pattern="^[a-zA-ZáéíóúüñÑ\s]+$"
+        [ngClass]="[
+            surname.invalid && (surname.dirty || surname.touched) ? 'is-invalid' : '',
+            surname.valid ? 'is-valid' : ''
+          ]"
+        required
+      >
+      <div *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+        <small *ngIf="surname.errors?.['required']" class="invalid-feedback d-block">
+          El campo apellidos es requerido
+        </small>
+        <small *ngIf="!surname.errors?.['required'] && !surname.valid" class="invalid-feedback d-block">
+          El campo apellidos es inválido
+        </small>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="email" class="form-label">Email (*)</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        #email="ngModel"
+        [(ngModel)]="user.email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [ngClass]="[
+            email.invalid && (email.dirty || email.touched) ? 'is-invalid' : '',
+            email.valid ? 'is-valid' : ''
+          ]"
+        required
+      >
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <small *ngIf="email.errors?.['required']" class="invalid-feedback d-block">
+          El campo email es requerido
+        </small>
+        <small *ngIf="!email.errors?.['required'] && !email.valid" class="invalid-feedback d-block">
+          El campo email es inválido
+        </small>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="password" class="form-label">Contraseña (*)</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        #password="ngModel"
+        [(ngModel)]="user.password"
+        [ngClass]="[
+            password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '',
+            password.valid ? 'is-valid' : ''
+          ]"
+        required
+      >
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <small *ngIf="password.errors?.['required']" class="invalid-feedback d-block">
+          El campo contraseña es requerido
+        </small>
+        <small *ngIf="!password.errors?.['required'] && !password.valid" class="invalid-feedback d-block">
+          El campo contraseña es inválido
+        </small>
+      </div>
+    </div>
+    <div class="text-end mt-3">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="registerForm.invalid"
+      >
+        <span *ngIf="isLoadingRegister" class="spinner-border spinner-border-sm text-light" role="status"></span>
+        Registrarme
+      </button>
+    </div>
   </form>
 </div>
