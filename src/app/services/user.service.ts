@@ -8,10 +8,14 @@ import { global } from './global';
 @Injectable()
 export class UserService {
   public url: string;
+  public identity: object;
+  public token: string;
   constructor(
     private _http: HttpClient
   ) {
     this.url = global.url;
+    this.token = '';
+    this.identity = {}
   }
 
   register(user: User): Observable<any> {
@@ -37,4 +41,28 @@ export class UserService {
       .set('Content-Type', 'application/json');
     return this._http.post(`${this.url}/login`, body, { headers });
   };
+
+  getIdentity() {
+    const identity: object = JSON.parse(localStorage.getItem('identity') || '{}');
+
+    if (identity) {
+      this.identity = identity;
+    } else {
+      this.identity = {};
+    }
+
+    return this.identity;
+  };
+
+  getToken() {
+    const token: string = localStorage.getItem('token') || '';
+
+    if (!!token.length) {
+      this.token = token;
+    } else {
+      this.token = '';
+    }
+
+    return this.token;
+  }
 }
