@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../models/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'register',
@@ -12,7 +13,9 @@ export class RegisterComponent implements OnInit {
   public user: User;
   public isLoadingRegister: boolean
 
-  constructor() {
+  constructor(
+    private _userService: UserService
+  ) {
     this.pageTitle = 'Registrate';
     this.isLoadingRegister = false;
     this.user = new User(
