@@ -1,1 +1,67 @@
-<p>login works!</p>
+<div class="col-lg-12 mt-3">
+  <h1>{{ pageTitle }}</h1>
+  <p>Identificate en el foro</p>
+  <hr>
+
+  <form class="col-md-5 ms-0 ps-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <div class="form-group mt-3">
+      <label for="email" class="form-label">Email (*)</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        #email="ngModel"
+        [(ngModel)]="user.email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        [ngClass]="[
+            email.invalid && (email.dirty || email.touched) ? 'is-invalid' : '',
+            email.valid ? 'is-valid' : ''
+          ]"
+        required
+      >
+      <div *ngIf="email.invalid && (email.dirty || email.touched)">
+        <small *ngIf="email.errors?.['required']" class="invalid-feedback d-block">
+          El campo email es requerido
+        </small>
+        <small *ngIf="!email.errors?.['required'] && !email.valid" class="invalid-feedback d-block">
+          El campo email es inválido
+        </small>
+      </div>
+    </div>
+    <div class="form-group mt-3">
+      <label for="password" class="form-label">Contraseña (*)</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        class="form-control"
+        #password="ngModel"
+        [(ngModel)]="user.password"
+        [ngClass]="[
+            password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '',
+            password.valid ? 'is-valid' : ''
+          ]"
+        required
+      >
+      <div *ngIf="password.invalid && (password.dirty || password.touched)">
+        <small *ngIf="password.errors?.['required']" class="invalid-feedback d-block">
+          El campo contraseña es requerido
+        </small>
+        <small *ngIf="!password.errors?.['required'] && !password.valid" class="invalid-feedback d-block">
+          El campo contraseña es inválido
+        </small>
+      </div>
+    </div>
+    <div class="text-end mt-3">
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="loginForm.invalid"
+      >
+        <span *ngIf="isLoadingLogin" class="spinner-border spinner-border-sm text-light" role="status"></span>
+        Ingresar
+      </button>
+    </div>
+  </form>
+</div>

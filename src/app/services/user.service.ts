@@ -24,6 +24,5 @@ export class UserService {
 
     // Hacer la petición ajax
     return this._http.post(`${this.url}/register`, body, { headers })
-  }
-
+  };
 }
