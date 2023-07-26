@@ -6,7 +6,8 @@ export class User {
     public password: string,
     public email: string,
     public image: string,
-    public role: string
+    public role: string,
+    public getToken?: boolean
   ) {
   }
 }

@@ -3,6 +3,10 @@
   <p>Identificate en el foro</p>
   <hr>
 
+  <div class="alert alert-danger col-md-5 my-3" *ngIf="status === 'error'">
+    <strong>Error: {{ messageError }}</strong>
+  </div>
+
   <form class="col-md-5 ms-0 ps-0" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
     <div class="form-group mt-3">
       <label for="email" class="form-label">Email (*)</label>

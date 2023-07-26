@@ -23,6 +23,18 @@ export class UserService {
       .set('Content-Type', 'application/json');
 
     // Hacer la petición ajax
-    return this._http.post(`${this.url}/register`, body, { headers })
+    return this._http.post(`${this.url}/register`, body, { headers });
+  };
+
+  signUp(user: User, getToken: boolean = false): Observable<any> {
+    // Comprobar si llega el getToken
+    if(getToken) {
+      user.getToken = getToken;
+    }
+
+    const body = JSON.stringify(user);
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json');
+    return this._http.post(`${this.url}/login`, body, { headers });
   };
 }
