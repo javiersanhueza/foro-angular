@@ -34,4 +34,5 @@ export class AppComponent implements OnInit, DoCheck {
     this.loadUser();
   }
 
+  protected readonly Object = Object;
 }
