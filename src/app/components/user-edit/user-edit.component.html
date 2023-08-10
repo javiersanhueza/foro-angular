@@ -9,7 +9,7 @@
     El registro no se ha completado<br>
     <strong>Error: {{ messageError }}</strong>
   </div>
-  <form class="col-md-5 ms-0 ps-0" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+  <form class="col-md-5 ms-0 ps-0" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
     <div class="form-group">
       <label for="name" class="form-label">Nombre (*)</label>
       <input
@@ -86,37 +86,22 @@
       </div>
     </div>
     <div class="form-group mt-3">
-      <label for="password" class="form-label">Contraseña (*)</label>
-      <input
-        type="password"
-        name="password"
-        id="password"
-        class="form-control"
-        #password="ngModel"
-        [(ngModel)]="user.password"
-        [ngClass]="[
-            password.invalid && (password.dirty || password.touched) ? 'is-invalid' : '',
-            password.valid ? 'is-valid' : ''
-          ]"
-        required
-      >
-      <div *ngIf="password.invalid && (password.dirty || password.touched)">
-        <small *ngIf="password.errors?.['required']" class="invalid-feedback d-block">
-          El campo contraseña es requerido
-        </small>
-        <small *ngIf="!password.errors?.['required'] && !password.valid" class="invalid-feedback d-block">
-          El campo contraseña es inválido
-        </small>
-      </div>
+      <label for="avatar" class="form-label">Avatar</label>
+      <angular-file-uploader
+        [config]="afuConfig"
+        [resetUpload]="resetVar"
+        (ApiResponse)="avatarUpload($event)"
+        id="avatar"
+      ></angular-file-uploader>
     </div>
     <div class="text-end mt-3">
       <button
         type="submit"
         class="btn btn-success"
-        [disabled]="registerForm.invalid"
+        [disabled]="userEditForm.invalid"
       >
         <span *ngIf="isLoadingEdit" class="spinner-border spinner-border-sm text-light" role="status"></span>
-        Registrarme
+        Guardar
       </button>
     </div>
   </form>

@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-user-edit',
@@ -18,6 +19,9 @@ export class UserEditComponent implements OnInit {
   public status: string = '';
   public messageError: string = '';
   public isLoadingEdit: boolean = false;
+  public afuConfig: any;
+  public url: string = global.url;
+  public resetVar: boolean = true;
 
   constructor(
     private _router: Router,
@@ -28,6 +32,27 @@ export class UserEditComponent implements OnInit {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.user = this.identity;
+    this.afuConfig = {
+      multiple: false,
+      formatsAllowed: '.jpg, .jpeg, .png, .gif',
+      maxSize: '50',
+      uploadAPI: {
+        url: `${this.url}/upload-avatar`,
+        headers: {
+          'Authorization': this.token
+        }
+      },
+      theme: 'attachPin',
+      hideProgressBar: false,
+      hideResetBtn: true,
+      hideSelectBtn: false,
+      replaceTexts: {
+        attachPinBtn: 'Sube tu avatar de usuario',
+        afterUploadMsg_success: 'Successfully Uploaded !',
+        afterUploadMsg_error: 'Upload Failed !',
+        sizeLimit: 'Size Limit'
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -35,6 +60,11 @@ export class UserEditComponent implements OnInit {
 
   onSubmit(form: any) {
 
+  }
+
+  avatarUpload(data: any) {
+    const dataObj = data.body;
+    this.user.image = dataObj.user.image;
   }
 
 }
