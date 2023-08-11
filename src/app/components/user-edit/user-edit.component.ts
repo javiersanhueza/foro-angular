@@ -59,7 +59,21 @@ export class UserEditComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-
+    this.isLoadingEdit = true;
+    this._userService.update(this.user).subscribe(
+      response => {
+        if (response.status === 'success') {
+          this.isLoadingEdit = false;
+          this.status = 'success';
+          localStorage.setItem('identity', JSON.stringify(this.user));
+        }
+      },
+      error => {
+        this.isLoadingEdit = false;
+        this.status = 'error';
+        console.log(error);
+      }
+    )
   }
 
   avatarUpload(data: any) {

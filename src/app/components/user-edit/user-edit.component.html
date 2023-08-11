@@ -3,10 +3,10 @@
   <hr>
 
   <div class="alert alert-success col-md-5 my-3" *ngIf="status === 'success'">
-    El registro se ha completado correctamente, <a [routerLink]="['/login']">identificate aquí</a>
+    Cambios guardados correctamente
   </div>
   <div class="alert alert-danger col-md-5 my-3" *ngIf="status === 'error'">
-    El registro no se ha completado<br>
+    Hubo un error<br>
     <strong>Error: {{ messageError }}</strong>
   </div>
   <form class="col-md-5 ms-0 ps-0" #userEditForm="ngForm" (ngSubmit)="onSubmit(userEditForm)">
