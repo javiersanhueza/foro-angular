@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularFileUploaderModule } from 'angular-file-uploader';
 
+import { PanelModule } from './panel/panel.module';
+
 import { routing, appRoutingProviders } from './app.routing';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -24,7 +26,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     routing,
     FormsModule,
     HttpClientModule,
-    AngularFileUploaderModule
+    AngularFileUploaderModule,
+    PanelModule
   ],
   providers: [
     appRoutingProviders
