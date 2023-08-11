@@ -2,6 +2,7 @@ import { Component, OnInit, DoCheck } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
 import { UserService } from './services/user.service';
+import { global } from './services/global';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,7 @@ import { UserService } from './services/user.service';
 export class AppComponent implements OnInit, DoCheck {
   public identity: any;
   public token: string = '';
+  public url: string = global.url;
 
   constructor(
     private _userService: UserService,
