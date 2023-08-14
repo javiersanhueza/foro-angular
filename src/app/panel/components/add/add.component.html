@@ -2,11 +2,18 @@
   <div class="col-lg-10">
     <h3>{{ pageTitle }}</h3>
 
-    <div class="alert alert-success col-md-5 my-3" *ngIf="status === 'success'">
+    <div class="alert alert-success col-md-12 my-3" *ngIf="status === 'success' && !isEdit">
       El tema se ha creado correctamente
     </div>
-    <div class="alert alert-danger col-md-5 my-3" *ngIf="status === 'error'">
+    <div class="alert alert-danger col-md-12 my-3" *ngIf="status === 'error' && !isEdit">
       El tema no se ha creado
+    </div>
+
+    <div class="alert alert-success col-md-12 my-3" *ngIf="status === 'success' && isEdit">
+      El tema se ha actualizado
+    </div>
+    <div class="alert alert-danger col-md-12 my-3" *ngIf="status === 'error' && isEdit">
+      El tema no se ha actualizado
     </div>
 
     <form #AddTopic="ngForm" (ngSubmit)="onSubmit(AddTopic)">

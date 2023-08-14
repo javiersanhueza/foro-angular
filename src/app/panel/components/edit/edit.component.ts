@@ -19,6 +19,7 @@ export class EditComponent implements OnInit {
   public token: string;
   public status: string = '';
   public isLoadingAddTopic: boolean = false;
+  public isEdit: boolean = true;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -61,15 +62,13 @@ export class EditComponent implements OnInit {
     })
   }
 
-  onSubmit(form: any) {
+  onSubmit(form: any = null) {
     this.isLoadingAddTopic = true;
     this._topicService.update(this.topic._id, this.topic, this.token).subscribe(
       response => {
         if (response.status === 'success') {
           this.status = 'success';
           this.isLoadingAddTopic = false;
-          this._router.navigate(['/panel']);
-          form.reset();
         } else {
           this.status = 'error';
         }

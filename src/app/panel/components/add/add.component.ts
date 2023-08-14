@@ -19,6 +19,7 @@ export class AddComponent implements OnInit {
   public token: string;
   public status: string = '';
   public isLoadingAddTopic: boolean = false;
+  public isEdit: boolean = false;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
