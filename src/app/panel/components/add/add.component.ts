@@ -3,12 +3,13 @@ import { ActivatedRoute, Router, Params } from '@angular/router';
 
 import { Topic } from '../../../models/topic';
 import { UserService } from '../../../services/user.service';
+import { TopicService } from '../../../services/topic.service';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css'],
-  providers: [UserService]
+  providers: [UserService, TopicService]
 })
 export class AddComponent implements OnInit {
 
@@ -21,7 +22,8 @@ export class AddComponent implements OnInit {
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
-    private _userService: UserService
+    private _userService: UserService,
+    private _topicService: TopicService
   ) {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
