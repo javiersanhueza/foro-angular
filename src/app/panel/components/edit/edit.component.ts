@@ -50,6 +50,8 @@ export class EditComponent implements OnInit {
         response => {
           if (response.status === 'success') {
             this.topic = response.topic
+          } else {
+            this._router.navigate(['/panel']);
           }
         },
         error => {
