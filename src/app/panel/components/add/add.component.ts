@@ -17,6 +17,7 @@ export class AddComponent implements OnInit {
   public identity: any;
   public token: string;
   public status: string = '';
+  public isLoadingAddTopic: boolean = false;
   constructor(
     private _route: ActivatedRoute,
     private _router: Router,
@@ -37,6 +38,10 @@ export class AddComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(form: any) {
+    console.log(this.topic);
   }
 
 }

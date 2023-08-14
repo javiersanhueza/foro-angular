@@ -1,1 +1,101 @@
-<p>add works!</p>
+<div class="row">
+  <div class="col-lg-10">
+    <h3>{{ pageTitle }}</h3>
+
+    <form #AddTopic="ngForm" (ngSubmit)="onSubmit(AddTopic)">
+      <div class="form-group">
+        <label for="title" class="form-label">Título (*)</label>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          class="form-control"
+          #title="ngModel"
+          [(ngModel)]="topic.title"
+          [ngClass]="[
+            title.invalid && (title.dirty || title.touched) ? 'is-invalid' : '',
+            title.valid ? 'is-valid' : ''
+          ]"
+          required
+        >
+        <div *ngIf="title.invalid && (title.dirty || title.touched)">
+          <small *ngIf="title.errors?.['required']" class="invalid-feedback d-block">
+            El campo título es requerido
+          </small>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label for="content" class="form-label">Contenido (*)</label>
+        <textarea
+          name="content"
+          id="content"
+          class="form-control"
+          #content="ngModel"
+          [(ngModel)]="topic.content"
+          [ngClass]="[
+            content.invalid && (content.dirty || content.touched) ? 'is-invalid' : '',
+            content.valid ? 'is-valid' : ''
+          ]"
+          required
+        ></textarea>
+        <div *ngIf="content.invalid && (content.dirty || content.touched)">
+          <small *ngIf="content.errors?.['required']" class="invalid-feedback d-block">
+            El campo contenido es requerido
+          </small>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label for="code" class="form-label">Pon tu código</label>
+        <textarea
+          name="code"
+          id="code"
+          class="form-control"
+          #code="ngModel"
+          [(ngModel)]="topic.code"
+          [ngClass]="[
+            code.invalid && (code.dirty || code.touched) ? 'is-invalid' : '',
+            code.valid ? 'is-valid' : ''
+          ]"
+          required
+        >
+        </textarea>
+        <div *ngIf="code.invalid && (code.dirty || code.touched)">
+          <small *ngIf="code.errors?.['required']" class="invalid-feedback d-block">
+            El campo código es requerido
+          </small>
+        </div>
+      </div>
+      <div class="form-group mt-3">
+        <label for="lang" class="form-label">Lenguaje (*)</label>
+        <input
+          type="text"
+          name="lang"
+          id="lang"
+          class="form-control"
+          #lang="ngModel"
+          [(ngModel)]="topic.lang"
+          [ngClass]="[
+            lang.invalid && (lang.dirty || lang.touched) ? 'is-invalid' : '',
+            lang.valid ? 'is-valid' : ''
+          ]"
+          required
+        >
+        <div *ngIf="lang.invalid && (lang.dirty || lang.touched)">
+          <small *ngIf="lang.errors?.['required']" class="invalid-feedback d-block">
+            El campo lenguaje es requerido
+          </small>
+        </div>
+      </div>
+      <div class="text-end mt-3">
+        <button
+          type="submit"
+          class="btn btn-success"
+          [disabled]="AddTopic.invalid"
+        >
+          <span *ngIf="isLoadingAddTopic" class="spinner-border spinner-border-sm text-light" role="status"></span>
+          Guardar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
