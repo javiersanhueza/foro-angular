@@ -33,7 +33,6 @@ export class AddComponent implements OnInit {
       '',
       '',
       '',
-      new Date(),
       this.identity._id,
       null
     )
@@ -43,7 +42,24 @@ export class AddComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    console.log(this.topic);
+    this.isLoadingAddTopic = true;
+    this._topicService.addTopic(this.topic, this.token).subscribe(
+      response => {
+        if (response.status === 'success') {
+          this.status = 'success';
+          this.isLoadingAddTopic = false;
+          this._router.navigate(['/panel']);
+          form.reset();
+        } else {
+          this.status = 'error';
+        }
+      },
+      error => {
+        this.status = 'error';
+        this.isLoadingAddTopic = false;
+        console.log(error);
+      }
+    )
   }
 
 }

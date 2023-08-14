@@ -13,4 +13,13 @@ export class TopicService {
     private _http: HttpClient
   ) {
   }
+
+  addTopic(topic: Topic, token: string): Observable<any> {
+    const body = JSON.stringify(topic);
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Authorization', token);
+
+    return this._http.post(`${this.url}/topic`, body, { headers });
+  }
 }

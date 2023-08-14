@@ -2,6 +2,13 @@
   <div class="col-lg-10">
     <h3>{{ pageTitle }}</h3>
 
+    <div class="alert alert-success col-md-5 my-3" *ngIf="status === 'success'">
+      El tema se ha creado correctamente
+    </div>
+    <div class="alert alert-danger col-md-5 my-3" *ngIf="status === 'error'">
+      El tema no se ha creado
+    </div>
+
     <form #AddTopic="ngForm" (ngSubmit)="onSubmit(AddTopic)">
       <div class="form-group">
         <label for="title" class="form-label">Título (*)</label>

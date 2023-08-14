@@ -7,9 +7,9 @@ export class Topic {
     public content: string,
     public code: string,
     public lang: string,
-    public date: Date,
     public user: User,
-    public comments: any
+    public comments: any,
+    public date?: Date
   ) {
   }
 }
