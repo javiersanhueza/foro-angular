@@ -62,8 +62,8 @@ export class EditComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    /* this.isLoadingAddTopic = true;
-    this._topicService.addTopic(this.topic, this.token).subscribe(
+    this.isLoadingAddTopic = true;
+    this._topicService.update(this.topic._id, this.topic, this.token).subscribe(
       response => {
         if (response.status === 'success') {
           this.status = 'success';
@@ -79,7 +79,7 @@ export class EditComponent implements OnInit {
         this.isLoadingAddTopic = false;
         console.log(error);
       }
-    ) */
+    )
   }
 
 }
