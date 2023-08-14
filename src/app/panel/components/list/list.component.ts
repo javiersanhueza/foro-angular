@@ -51,4 +51,6 @@ export class ListComponent implements OnInit {
     )
   }
 
+  protected readonly Date = Date;
+  protected readonly parseInt = parseInt;
 }

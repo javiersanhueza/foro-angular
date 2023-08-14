@@ -9,7 +9,7 @@ export class Topic {
     public lang: string,
     public user: User,
     public comments: any,
-    public date?: Date
+    public date?: string
   ) {
   }
 }

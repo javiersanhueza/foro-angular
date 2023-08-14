@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MomentModule } from 'angular2-moment';
 
 import { PanelRoutingModule } from './panel-routing.module';
 
@@ -26,7 +27,8 @@ import { EditComponent } from './components/edit/edit.component';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    PanelRoutingModule
+    PanelRoutingModule,
+    MomentModule
   ],
   exports: [
     AddComponent,
