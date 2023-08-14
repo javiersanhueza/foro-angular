@@ -29,4 +29,11 @@ export class TopicService {
 
     return this._http.get(`${this.url}/user-topics/${userId}`, { headers });
   }
+
+  getTopic(topicId: string): Observable<any> {
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+
+    return this._http.get(`${this.url}/topic/${topicId}`, { headers });
+  }
 }

@@ -12,7 +12,7 @@
         aria-controls="v-pills-home"
         aria-selected="true"
         [routerLink]="['list']"
-        [ngClass]="{ 'active': obtenerRuta() === '/panel' || obtenerRuta() === '/panel/list'}"
+        [ngClass]="{ 'active': obtenerRuta() === '/panel' || obtenerRuta() === '/panel/list' || obtenerRuta().includes('/panel/edit/')}"
       >
         Mis temas
       </a>
